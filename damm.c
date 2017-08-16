@@ -13,7 +13,7 @@ const int m[] = {
 
 int digit(const char* data, unsigned long length) {
   unsigned int d = 0;
-  char c = 0;
+  char c;
   goto *((*data == '\0') ? &&result : &&loop);
 
 loop:
