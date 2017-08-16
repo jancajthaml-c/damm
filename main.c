@@ -1,5 +1,6 @@
 #include "damm.h"
 
+#include <string.h>
 #include <stdio.h>
 #include <sys/time.h>
 #include <sys/resource.h>
@@ -14,23 +15,27 @@ double diff(double start, double end) {
   return temp;
 }
 
+int _dammDigit(const char* data) {
+	return digit(data, strlen(data));
+}
+
 int main() {
-	printf("\nRunning unit tests \n");
+	printf("\nRunning unit tests\n");
 
 	// expectations
 
-	if (digit("") != 0) {
+	if (_dammDigit("") != 0) {
 		return 1;
 	}
-	if (digit("00123014764700968325") != 0) {
-		return 1;
-	}
-
-	if (digit("1234567812345678") == 0) {
+	if (_dammDigit("00123014764700968325") != 0) {
 		return 1;
 	}
 
-	if (digit("ZZZZ") != -1) {
+	if (_dammDigit("1234567812345678") != 5) {
+		return 1;
+	}
+
+	if (_dammDigit("ZZZZ") != -1) {
 		return 1;
 	}
 
@@ -55,7 +60,7 @@ int main() {
 		clock_cost += diff(t1.tv_nsec, t2.tv_nsec);
 
 		clock_gettime(CLOCK_MONOTONIC_RAW, &t1);
-		digit("1234567812345678");
+		_dammDigit("1234567812345678");
 		clock_gettime(CLOCK_MONOTONIC_RAW, &t2);
 		total_time += diff(t1.tv_nsec, t2.tv_nsec);
 	}

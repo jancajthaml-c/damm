@@ -11,10 +11,9 @@ const int m[] = {
   2, 5, 8, 1, 4, 3, 6, 7, 9, 0, 0, 0, 0, 0, 0, 0
 };
 
-int digit(const char* data) {
+int digit(const char* data, unsigned long length) {
   unsigned int d = 0;
   char c = 0;
-  unsigned long length = sizeof(*data);
   goto *((*data == '\0') ? &&result : &&loop);
 
 loop:
@@ -23,7 +22,7 @@ loop:
     return -1;
   }
   d = m[(d<<4) + c - 48];
-  goto *(length-- ? &&result : &&loop);
+  goto *(--length ? &&loop : &&result);
 
 result:
   return d;

@@ -1,1 +1,1 @@
-int digit(const char* data);
+int digit(const char* data, unsigned long length);
