@@ -11,19 +11,17 @@ const int m[] = {
   2, 5, 8, 1, 4, 3, 6, 7, 9, 0, 0, 0, 0, 0, 0, 0
 };
 
-int digit(const char* data, unsigned long length) {
-  unsigned int d = 0;
-  char c;
-  goto *((*data == '\0') ? &&result : &&loop);
+int damm_digit(const char* data, unsigned long length) {
+  if (!length || *data == '\0') return 0;
 
-loop:
-  c = *data++;
-  if (c < '0' || c > '9') {
-    return -1;
-  }
-  d = m[(d<<4) + c - 48];
-  goto *(--length ? &&loop : &&result);
+  int d = 0;
+  int c;
+  
+  do {
+    c = *data++ - 48;
+    if (c < 0 || c > 9) return -1;
+    d = m[(d<<4) + c];
+  } while(--length);
 
-result:
   return d;
 }
