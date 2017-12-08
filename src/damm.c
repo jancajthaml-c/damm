@@ -11,17 +11,21 @@ const int m[] = {
   2, 5, 8, 1, 4, 3, 6, 7, 9, 0, 0, 0, 0, 0, 0, 0
 };
 
-int damm_digit(const char* data, unsigned long length) {
-  if (!length || *data == '\0') return 0;
+int damm_digit(const char* data) {
+  if (*data == '\0') return 0;
 
   int d = 0;
-  int c;
-  
+  unsigned int c;
+
   do {
     c = *data++ - 48;
-    if (c < 0 || c > 9) return -1;
+    if (c > 9) return -1;
     d = m[(d<<4) + c];
-  } while(--length);
+  } while(*data);
 
   return d;
+}
+
+int damm_valid(const char* data) {
+  return damm_digit(data) == 0;
 }
