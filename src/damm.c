@@ -14,16 +14,16 @@ const int m[] = {
 int damm_digit(const char* data) {
   if (*data == '\0') return 0;
 
-  int d = 0;
-  unsigned int c;
+  int x = 0;
+  unsigned int d;
 
   do {
-    c = *data++ - 48;
-    if (c > 9) return -1;
-    d = m[(d<<4) + c];
+    d = *data++ - 48;
+    if (d > 9) return -1;
+    x = m[(x<<4) + d];
   } while(*data);
 
-  return d;
+  return x;
 }
 
 int damm_valid(const char* data) {
